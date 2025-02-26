@@ -6,7 +6,7 @@ Flask-WTF==1.2.1
 SQLAlchemy==2.0.25
 python-dotenv==1.0.0
 bcrypt==4.1.2
+httpx==0.25.2
 supabase==2.3.4
 python-jose==3.3.0
-httpx==0.26.0
 postgrest==0.13.1
