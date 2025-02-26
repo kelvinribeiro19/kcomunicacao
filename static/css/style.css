@@ -216,62 +216,90 @@ h1 {
 .modal {
     display: none;
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal.show {
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
 }
 
 .modal-content {
-    background-color: #1a1a1a;
+    background-color: var(--primary-dark);
+    margin: 10% auto;
     padding: 30px;
+    border: 1px solid var(--gold);
     border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 500px;
     position: relative;
+    color: var(--text-light);
+}
+
+.close-modal {
+    color: var(--text-muted);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.close-modal:hover {
+    color: var(--gold);
 }
 
 .modal-title {
     color: var(--gold);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
 }
 
-.close-modal {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: var(--gold);
-    cursor: pointer;
-    font-size: 1.5rem;
-    line-height: 1;
-}
-
-.form-select {
-    background-color: #2a2a2a;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 12px;
+/* Alert Messages */
+.alert {
+    border: none;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.form-select:focus {
-    background-color: #2a2a2a;
-    border-color: var(--gold);
-    box-shadow: none;
+.alert-success {
+    background-color: #28a745;
+    color: white;
 }
 
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    gap: 10px;
+.alert-error {
+    background-color: #dc3545;
+    color: white;
+}
+
+.alert-warning {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.alert-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-close {
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
 }
