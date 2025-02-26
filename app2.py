@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
 from dotenv import load_dotenv
 from auth import login_required, register_user, login_user, logout_user
 import os
@@ -22,12 +22,18 @@ for var in required_env_vars:
 app = Flask(__name__)
 app.secret_key = os.getenv('FLASK_SECRET_KEY')
 
+# Configuração para servir arquivos estáticos
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                             'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 @app.route('/')
 def index():
     try:
         if 'user' in session:
             return redirect(url_for('dashboard'))
-        return render_template('index.html')
+        return render_template('login.html')
     except Exception as e:
         logger.error(f"Erro na rota /: {str(e)}")
         flash('Ocorreu um erro ao carregar a página', 'error')

@@ -20,6 +20,10 @@
             "dest": "/static/$1"
         },
         {
+            "src": "/favicon.ico",
+            "dest": "/static/favicon.ico"
+        },
+        {
             "src": "/(.*)",
             "dest": "/app2.py"
         }
@@ -27,7 +31,6 @@
     "env": {
         "FLASK_APP": "app2.py",
         "FLASK_ENV": "production",
-        "PYTHONPATH": ".",
-        "PIP_VERSION": "23.0.1"
+        "PYTHONPATH": "."
     }
 }
