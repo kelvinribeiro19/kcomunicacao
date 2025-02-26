@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Bem-vindo ao Gerenciador de Projetos</h1>
+    <p class="lead">Gerencie seus projetos e equipes de forma eficiente</p>
+    {% if not current_user.is_authenticated %}
+    <div class="mt-4">
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mx-2">Entrar</a>
+        <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg mx-2">Registrar</a>
+    </div>
+    {% else %}
+    <div class="mt-4">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Ir para Dashboard</a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-tasks fa-3x text-primary mb-3"></i>
+                <h3>Gestão de Projetos</h3>
+                <p>Organize e acompanhe seus projetos de forma eficiente</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                <h3>Gestão de Equipes</h3>
+                <p>Gerencie sua equipe e atribua tarefas facilmente</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                <h3>Acompanhamento</h3>
+                <p>Monitore o progresso e resultados dos seus projetos</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

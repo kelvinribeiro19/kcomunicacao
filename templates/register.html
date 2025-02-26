@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Registro - Agency Task Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="text-center mb-5">
+                <img src="https://agenciakcom.com.br/wp-content/uploads/2024/03/logo-300x167.png" alt="Agência K" class="logo">
+            </div>
+            <form method="POST" action="{{ url_for('register') }}">
+                <div class="mb-4">
+                    <input type="text" class="form-control custom-input" id="username" name="username" placeholder="Nome de usuário" required>
+                </div>
+                <div class="mb-4">
+                    <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="mb-4">
+                    <input type="password" class="form-control custom-input" id="password" name="password" placeholder="Senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-3 custom-btn">Criar conta</button>
+                <div class="text-center">
+                    <p class="mb-0">Já tem uma conta? <a href="{{ url_for('login') }}" class="gold-link">Faça login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

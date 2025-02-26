@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Tarefas do Projeto</h1>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+        <i class="fas fa-plus"></i> Nova Tarefa
+    </button>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">
+                Pendentes
+            </div>
+            <div class="card-body">
+                {% for task in tasks if task.status == 'Pendente' %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <p class="card-text">{{ task.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Prazo: {{ task.deadline.split('T')[0] if task.deadline else 'Não definido' }}</small>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-white">
+                Em Andamento
+            </div>
+            <div class="card-body">
+                {% for task in tasks if task.status == 'Em Andamento' %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <p class="card-text">{{ task.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Prazo: {{ task.deadline.split('T')[0] if task.deadline else 'Não definido' }}</small>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                Concluídas
+            </div>
+            <div class="card-body">
+                {% for task in tasks if task.status == 'Concluída' %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <p class="card-text">{{ task.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Prazo: {{ task.deadline.split('T')[0] if task.deadline else 'Não definido' }}</small>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nova Tarefa -->
+<div class="modal fade" id="newTaskModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nova Tarefa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">Prazo</label>
+                        <input type="date" class="form-control" id="deadline" name="deadline">
+                    </div>
+                    <div class="mb-3">
+                        <label for="assigned_to" class="form-label">Atribuir para</label>
+                        <select class="form-control" id="assigned_to" name="assigned_to">
+                            <option value="">Selecione um membro</option>
+                            <!-- Aqui virão as opções de membros da equipe -->
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Criar Tarefa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
