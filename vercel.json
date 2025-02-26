@@ -8,17 +8,26 @@
                 "runtime": "python3.11",
                 "maxLambdaSize": "15mb"
             }
+        },
+        {
+            "src": "static/**",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
         {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
             "src": "/(.*)",
-            "dest": "app2.py"
+            "dest": "/app2.py"
         }
     ],
     "env": {
         "FLASK_APP": "app2.py",
         "FLASK_ENV": "production",
+        "PYTHONPATH": ".",
         "PIP_VERSION": "23.0.1"
     }
 }
